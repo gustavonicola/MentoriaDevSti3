@@ -32,6 +32,48 @@ namespace MentoriaDevSti3.View.UserControls
             UcProdutovm.ProdutosAdicionados = new ObservableCollection<ProdutosViewModel>();
         }
 
+        private void AlterarProduto()
+        {
+            // Será desenvolvido na aula de banco de dados.
+        }
+
+        private void PreencherCampos(ProdutosViewModel produto)
+        {
+            UcProdutovm.Nome = produto.Nome;
+            UcProdutovm.Valor = produto.Valor;
+
+            UcProdutovm.Alteracao = true;
+        }
+
+        private void AdicionarProduto()
+        {
+            var novoProduto = new ProdutosViewModel
+            {
+                Nome = UcProdutovm.Nome,
+                Valor = UcProdutovm.Valor
+            };
+
+            UcProdutovm.ProdutosAdicionados.Add(novoProduto);
+        }
+
+        private void LimparCampos()
+        {
+            UcProdutovm.Nome = "";
+            UcProdutovm.Valor = 0;
+            UcProdutovm.Alteracao = false;
+        }
+
+        private bool ValidarProduto()
+        {
+            if (string.IsNullOrEmpty(UcProdutovm.Nome))
+            {
+                MessageBox.Show("O Campo nome é obrigatório.", "Atenção", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnAdicionar_Click(object sender, RoutedEventArgs e)
         {
 
@@ -52,7 +94,7 @@ namespace MentoriaDevSti3.View.UserControls
 
         private void BtnRemover_Click(object sender, RoutedEventArgs e)
         {
-
+            // Será desenvolvido na aula de banco de dados.
         }
 
         private void BtnAlterar_Click(object sender, RoutedEventArgs e)
@@ -67,47 +109,6 @@ namespace MentoriaDevSti3.View.UserControls
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
-        private void AlterarProduto()
-        {
-            // Será desenvolvido na aula de banco de dados.
-        }        
         
-        private void PreencherCampos(ProdutosViewModel produto)
-        {
-            UcProdutovm.Nome = produto.Nome;
-            UcProdutovm.Valor = produto.Valor;
-
-            UcProdutovm.Alteracao = true;
-        }
-        
-        private void AdicionarProduto()
-        {
-            var novoProduto = new ProdutosViewModel
-            {
-                Nome = UcProdutovm.Nome,
-                Valor = UcProdutovm.Valor
-            };
-            
-            UcProdutovm.ProdutosAdicionados.Add(novoProduto);
-        }
-
-        private void LimparCampos()
-        {
-            UcProdutovm.Nome = "";
-            UcProdutovm.Valor = 0;
-            UcProdutovm.Alteracao = false;
-        }
-
-        private bool ValidarProduto()
-        {
-            if (string.IsNullOrEmpty(UcProdutovm.Nome))
-            {
-                MessageBox.Show("O Campo nome é obrigatório.","Atenção",MessageBoxButton.OK,MessageBoxImage.Information);
-                return false;
-            }
-
-            return true;
-        }        
     }
 }
